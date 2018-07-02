@@ -19,6 +19,7 @@ appbuilder = AppBuilder(app, db.session)
 
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+
 """
 from sqlalchemy.engine import Engine
 from sqlalchemy import event

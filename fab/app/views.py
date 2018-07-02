@@ -32,15 +32,22 @@ db.create_all()
 
 
 class Api(BaseView):
-    default_view = 'random'
+    default_view = "random"
 
-    @expose('/random/')
+    @expose('/random')
     def random(self):
         response = {
             'randomNumber': randint(1, 100)
         }
-
         return jsonify(response)
 
+    @expose('/default_random')
+    def show_random(self):
+        message = 'Hello F.A.B'
+        return render_template('random.html', base_template=appbuilder.base_template, appbuilder=appbuilder, message=message)
 
-appbuilder.add_view(Api, "random", category='My View')
+
+appbuilder.add_view(Api, 'random', category="Api")
+appbuilder.add_link(
+    'Default Random', href="/api/default_random", category="Api")
+
