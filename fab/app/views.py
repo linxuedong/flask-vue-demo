@@ -50,3 +50,4 @@ class Api(BaseView):
 appbuilder.add_view(Api, 'random', category="Api")
 appbuilder.add_link(
     'Default Random', href="/api/default_random", category="Api")
+
