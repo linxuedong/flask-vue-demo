@@ -1,0 +1,51 @@
+{% extends "appbuilder/base.html" %}
+
+{% block content %}
+<div id="app">
+    <div>
+        <p> Home Page </p>
+        <p> Random number from backend: [[ randomNumber ]] </p>
+        <button @click="getRandom"> New random number</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+var app = new Vue({
+    el: '#app',
+    data: {
+        randomNumber: 0
+    },
+    methods: {
+      getRandom () {
+        this.randomNumber = this.getRandomFromBackend()
+        console.log('get from backend');
+        console.log(this.randomNumber)
+      },
+      getRandomFromBackend () {
+        const path = '/api/random'
+        axios.get(path)
+          .then(response => {
+            this.randomNumber = response.data.randomNumber
+            console.log('get:');
+            console.log(this.randomNumber)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
+    },
+    created () {
+      this.getRandom()
+    },
+    delimiters: ['[[',']]']
+
+})
+
+
+
+</script>
+
+{% endblock %}

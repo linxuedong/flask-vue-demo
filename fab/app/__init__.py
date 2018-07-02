@@ -1,6 +1,7 @@
 import logging
 from flask import Flask
 from flask_appbuilder import SQLA, AppBuilder
+from flask_cors import CORS
 
 """
  Logging configuration
@@ -14,6 +15,8 @@ app.config.from_object('config')
 db = SQLA(app)
 appbuilder = AppBuilder(app, db.session)
 
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 
 """
 from sqlalchemy.engine import Engine
@@ -26,7 +29,6 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
     cursor = dbapi_connection.cursor()
     cursor.execute("PRAGMA foreign_keys=ON")
     cursor.close()
-"""    
+"""
 
 from app import views
-
