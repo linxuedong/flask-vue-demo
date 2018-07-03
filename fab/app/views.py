@@ -41,13 +41,15 @@ class Api(BaseView):
         }
         return jsonify(response)
 
-    @expose('/default_random')
-    def show_random(self):
-        message = 'Hello F.A.B'
-        return render_template('random.html', base_template=appbuilder.base_template, appbuilder=appbuilder, message=message)
+
+class RandomView(BaseView):
+    route_base = '/'
+    default_view = 'random'
+
+    @expose('random')
+    def random(self):
+        return self.render_template('random.html')
 
 
-appbuilder.add_view(Api, 'random', category="Api")
-appbuilder.add_link(
-    'Default Random', href="/api/default_random", category="Api")
-
+appbuilder.add_view_no_menu(Api)
+appbuilder.add_view(RandomView, 'random', category="Random")
