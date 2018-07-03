@@ -10,9 +10,7 @@ from flask_cors import CORS
 logging.basicConfig(format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
 logging.getLogger().setLevel(logging.DEBUG)
 
-app = Flask(__name__,
-            static_folder="../../frontend/dist/static",
-            template_folder="../../frontend/dist")
+app = Flask(__name__)
 app.config.from_object('config')
 db = SQLA(app)
 appbuilder = AppBuilder(app, db.session)
