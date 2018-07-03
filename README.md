@@ -29,7 +29,7 @@ workon venv
 pip install -r requirements.txt
 
 # 在 flask-vue-demo 目录下
-cd backend
+cd flask-vue/backend/
 
 # Run server
 export FLASK_APP=run.py
@@ -39,7 +39,7 @@ flask run
 ### Frontend
 ```bash
 # 在 flask-vue-demo 目录下
-cd frontend
+cd flask-vue/frontend/
 # Install front-end
 npm install
 
